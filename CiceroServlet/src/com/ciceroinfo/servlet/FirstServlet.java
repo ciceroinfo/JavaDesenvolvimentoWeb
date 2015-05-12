@@ -21,7 +21,6 @@ public class FirstServlet extends HttpServlet {
 		try {
 			new ContatoDAO().add(new Contato());
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}		
 		PrintWriter out = response.getWriter();
