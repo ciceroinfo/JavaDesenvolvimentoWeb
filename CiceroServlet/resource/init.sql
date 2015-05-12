@@ -1,4 +1,4 @@
-
+/*
 create table contato (
 	id bigint not null auto_increment,
 	nome varchar(255),
@@ -10,6 +10,6 @@ create table contato (
 
 insert into contato (nome, email, endereco, data_nascimento) 
 values ('Teste 01', 'teste01@gmail.com', 'rua fulano de tal', STR_TO_DATE ('1982-02-01', '%Y-%m-%d') );
-
+*/
 
 select * from cicerodb.contato;
