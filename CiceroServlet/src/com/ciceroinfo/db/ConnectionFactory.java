@@ -11,14 +11,13 @@ public class ConnectionFactory {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
 		try {
 
 			return DriverManager.getConnection(
-					"jdbc:mysql://localhost/cicerodb", "root", "registro");
+					"jdbc:mysql://localhost/cicerodb", "root", "");
 
 		} catch (SQLException e) {
 			throw new RuntimeException(e);

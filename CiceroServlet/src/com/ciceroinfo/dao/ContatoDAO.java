@@ -3,7 +3,10 @@ package com.ciceroinfo.dao;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import com.ciceroinfo.bo.Contato;
@@ -47,9 +50,42 @@ public class ContatoDAO implements DAO<Contato> {
 	}
 
 	@Override
-	public List<Contato> list() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Contato> getList() {
+
+		List<Contato> contatos = new ArrayList<Contato>();
+
+		try {
+
+			String sql = "select * from cicerodb.contato";
+
+			PreparedStatement stmt = conn.prepareStatement(sql);
+
+			ResultSet rs = stmt.executeQuery();
+
+			while (rs.next()) {
+
+				Contato contato = new Contato();
+
+				contato.setId(rs.getLong("id"));
+				contato.setNome(rs.getString("nome"));
+				contato.setEmail(rs.getString("email"));
+				contato.setEndereco(rs.getString("endereco"));
+
+				Calendar data = Calendar.getInstance();
+				data.setTime(rs.getDate("data_nascimento"));
+
+				contato.setDataNascimento(data);
+				
+				contatos.add(contato);
+
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
+
+		return contatos;
 	}
 
 	@Override

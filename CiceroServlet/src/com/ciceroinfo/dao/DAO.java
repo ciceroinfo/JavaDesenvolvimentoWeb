@@ -11,7 +11,7 @@ public interface DAO<E> {
 
 	public boolean edit(E e);
 
-	public List<E> list();
+	public List<E> getList();
 
 	public Object getById(long id);
 
