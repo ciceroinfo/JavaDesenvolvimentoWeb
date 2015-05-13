@@ -14,6 +14,16 @@
 		<servlet-name>firstServlet</servlet-name>
 		<url-pattern>/oi</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>adicionaContato</servlet-name>
+		<servlet-class>com.ciceroinfo.servlet.AdicionaContatoServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>adicionaContato</servlet-name>
+		<url-pattern>/AdicionaContato</url-pattern>
+	</servlet-mapping>
 
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
