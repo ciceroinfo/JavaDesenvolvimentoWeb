@@ -8,6 +8,37 @@
 <script type="text/javascript" src="js/jquery.js"></script>
 <script type="text/javascript" src="js/jquery-ui.js"></script>
 
+<style type="text/css">
+html, body {
+	margin: 0;
+	padding: 0;
+	height: 100%;
+}
+
+#container {
+	min-height: 100%;
+	position: relative;
+}
+
+#header {
+	/*background: #ff0;*/
+	padding: 10px;
+}
+
+#body {
+	padding: 10px;
+	padding-bottom: 60px; /* Height of the footer */
+}
+
+#footer {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	height: 60px; /* Height of the footer */
+	/*background: #6cf;*/
+}
+</style>
+
 <script type="text/javascript">
 	$(function() {
 		$("#dataNascimento").datepicker();
@@ -17,38 +48,49 @@
 </head>
 
 <body>
-	<c:import url="cabecalho.jsp" />
-	<jsp:useBean id="dao" class="com.ciceroinfo.dao.ContatoDAO" />
+	<div id="container">
 
-	<form action="AdicionaContato">
+		<c:import url="cabecalho.jsp" />
 
-		<table border="1" style="border-collapse: collapse">
 
-			<tr>
-				<th>ID</th>
-				<th>Nome</th>
-				<th>Email</th>
-				<th>Endereço</th>
-				<th>Data Nascimento</th>
-			</tr>
+		<div id="body">
 
-			<c:forEach var="contato" items="${dao.list}" varStatus="id">
+			<jsp:useBean id="dao" class="com.ciceroinfo.dao.ContatoDAO" />
 
-				<tr bgcolor="#${id.count % 2 == 0 ? 'F0F0F0' : 'FFFFFF'}">
-					<td>${contato.id}</td>
-					<td>${contato.nome}</td>
-					<c:if test="${not empty contato.email}">
-						<td><a href="mailto:${contato.email}">${contato.email}</a></td>
-					</c:if>
-					<td align="center">${contato.endereco }</td>
-					<td><fmt:formatDate value="${contato.dataNascimento.time}"
-							pattern="dd/MM/yyyy" /></td>
-				</tr>
 
-			</c:forEach>
+			<form action="AdicionaContato">
 
-		</table>
-	</form>
-	<c:import url="rodape.jsp" />
+				<table border="1" style="border-collapse: collapse">
+
+					<tr>
+						<th>ID</th>
+						<th>Nome</th>
+						<th>Email</th>
+						<th>Endereço</th>
+						<th>Data de Nascimento</th>
+					</tr>
+
+					<c:forEach var="contato" items="${dao.list}" varStatus="id">
+
+						<tr bgcolor="#${id.count % 2 == 0 ? 'F0F0F0' : 'FFFFFF'}">
+							<td>${contato.id}</td>
+							<td align="left">${contato.nome}</td>
+							<c:if test="${not empty contato.email}">
+								<td align="left"><a href="mailto:${contato.email}">${contato.email}</a></td>
+							</c:if>
+							<td align="left">${contato.endereco }</td>
+							<td align="center"><fmt:formatDate
+									value="${contato.dataNascimento.time}" pattern="dd/MM/yyyy" /></td>
+						</tr>
+
+					</c:forEach>
+
+				</table>
+			</form>
+
+		</div>
+
+		<c:import url="rodape.jsp" />
+	</div>
 </body>
 </html>

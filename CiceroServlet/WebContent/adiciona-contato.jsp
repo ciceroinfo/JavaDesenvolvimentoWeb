@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -5,39 +6,79 @@
 <script type="text/javascript" src="js/jquery.js"></script>
 <script type="text/javascript" src="js/jquery-ui.js"></script>
 
+<style type="text/css">
+html, body {
+	margin: 0;
+	padding: 0;
+	height: 100%;
+}
+
+#container {
+	min-height: 100%;
+	position: relative;
+}
+
+#header {
+	/*background: #ff0;*/
+	padding: 10px;
+}
+
+#body {
+	padding: 10px;
+	padding-bottom: 60px; /* Height of the footer */
+}
+
+#footer {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	height: 60px; /* Height of the footer */
+	/*background: #6cf;*/
+}
+</style>
+
 <script type="text/javascript">
 	$(function() {
-	    $( "#dataNascimento" ).datepicker();
-	  });
+		$("#dataNascimento").datepicker();
+	});
 </script>
 
 </head>
 
 <body>
+	<div id="container">
 
-	<form action="AdicionaContato">
-		<table>
-			<tr>
-				<td>Nome:</td>
-				<td><input type="text" name="nome" /></td>
-			</tr>
-			<tr>
-				<td>Email:</td>
-				<td><input type="text" name="email" /></td>
-			</tr>
-			<tr>
-				<td>EndereÃ§o:</td>
-				<td><input type="text" name="endereco" /></td>
-			</tr>
-			<tr>
-				<td>Data Nascimento:</td>
-				<td><input type="text" name="dataNascimento" id="dataNascimento" /></td>
-			</tr>
-			<tr>
-				<td><input type="submit" value="Gravar" /></td>
-			</tr>
-		</table>
-	</form>
+		<c:import url="cabecalho.jsp" />
 
+		<div id="body">
+
+			<form action="AdicionaContato">
+				<table>
+					<tr>
+						<td>Nome:</td>
+						<td><input type="text" name="nome" /></td>
+					</tr>
+					<tr>
+						<td>Email:</td>
+						<td><input type="text" name="email" /></td>
+					</tr>
+					<tr>
+						<td>Endereço:</td>
+						<td><input type="text" name="endereco" /></td>
+					</tr>
+					<tr>
+						<td>Data de Nascimento:</td>
+						<td><input type="text" name="dataNascimento"
+							id="dataNascimento" /></td>
+					</tr>
+					<tr>
+						<td><input type="submit" value="Gravar" /></td>
+					</tr>
+				</table>
+			</form>
+		</div>
+
+		<c:import url="rodape.jsp" />
+	</div>
 </body>
 </html>
