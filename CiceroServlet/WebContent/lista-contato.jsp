@@ -39,12 +39,6 @@ html, body {
 }
 </style>
 
-<script type="text/javascript">
-	$(function() {
-		$("#dataNascimento").datepicker();
-	});
-</script>
-
 </head>
 
 <body>
@@ -85,8 +79,7 @@ html, body {
 									<fmt:formatDate value="${contato.dataNascimento.time}"
 										pattern="dd/MM/yyyy" />
 								</c:if></td>
-							<td align="center">
-								<a href="altera-contato.jsp">Alterar</a>&nbsp;&nbsp;
+							<td align="center"><a href="altera-contato.jsp">Alterar</a>&nbsp;&nbsp;
 								<a href="lista-contato.jsp">Remover</a></td>
 						</tr>
 
