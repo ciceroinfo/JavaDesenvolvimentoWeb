@@ -68,6 +68,7 @@ html, body {
 						<th>Email</th>
 						<th>Endereço</th>
 						<th>Data de Nascimento</th>
+						<th>Ação</th>
 					</tr>
 
 					<c:forEach var="contato" items="${dao.list}" varStatus="id">
@@ -84,11 +85,15 @@ html, body {
 									<fmt:formatDate value="${contato.dataNascimento.time}"
 										pattern="dd/MM/yyyy" />
 								</c:if></td>
+							<td align="center">
+								<a href="altera-contato.jsp">Alterar</a>&nbsp;&nbsp;
+								<a href="lista-contato.jsp">Remover</a></td>
 						</tr>
 
 					</c:forEach>
 
 				</table>
+				<a href="adiciona-contato.jsp">Adicionar</a>
 			</form>
 
 		</div>
