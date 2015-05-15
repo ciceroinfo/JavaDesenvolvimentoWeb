@@ -1,6 +1,7 @@
 package com.ciceroinfo.servlet;
 
 import java.io.IOException;
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -39,7 +40,11 @@ public class AdicionaContatoServlet extends HttpServlet {
 			throws IOException, ServletException {
 
 		try {
-			DAO<Contato> dao = new ContatoDAO();
+
+			Connection connection = (Connection) request
+					.getAttribute("connection");
+
+			DAO<Contato> dao = new ContatoDAO(connection);
 
 			Contato contato = new Contato();
 

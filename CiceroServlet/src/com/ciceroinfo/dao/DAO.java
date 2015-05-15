@@ -7,12 +7,12 @@ public interface DAO<E> {
 
 	public boolean add(E e) throws SQLException;
 
-	public boolean remove(E e);
+	public boolean remove(E e) throws SQLException;
 
 	public boolean edit(E e) throws SQLException;
 
-	public List<E> getList();
+	public List<E> getList() throws SQLException;
 
-	public Object getById(long id);
+	public E getById(long id) throws SQLException;
 
 }

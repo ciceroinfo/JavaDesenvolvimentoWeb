@@ -1,5 +1,6 @@
 package com.ciceroinfo.mvc.logica;
 
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -21,7 +22,11 @@ public class AdicionaContatoLogica implements Logica {
 			throws Exception {
 
 		try {
-			DAO<Contato> dao = new ContatoDAO();
+			
+			Connection connection = (Connection) request
+					.getAttribute("connection");
+
+			DAO<Contato> dao = new ContatoDAO(connection);
 
 			Contato contato = new Contato();
 

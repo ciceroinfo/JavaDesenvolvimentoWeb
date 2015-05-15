@@ -2,7 +2,7 @@ package com.ciceroinfo.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.SQLException;
+import java.sql.Connection;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.ciceroinfo.bo.Contato;
 import com.ciceroinfo.dao.ContatoDAO;
+import com.ciceroinfo.dao.DAO;
 
 public class FirstServlet extends HttpServlet {
 
@@ -19,12 +20,18 @@ public class FirstServlet extends HttpServlet {
 			throws IOException {
 
 		try {
-			new ContatoDAO().add(new Contato());
-		} catch (SQLException e) {
+			Connection connection = (Connection) request
+					.getAttribute("connection");
+
+			DAO<Contato> dao = new ContatoDAO(connection);
+			
+			dao.add(new Contato());
+			
+		} catch (Exception e) {
 			e.printStackTrace();
-		}		
+		}
 		PrintWriter out = response.getWriter();
-		
+
 		out.println("<html><body><h1>Test Servlet</h1></body></html>");
 	}
 
