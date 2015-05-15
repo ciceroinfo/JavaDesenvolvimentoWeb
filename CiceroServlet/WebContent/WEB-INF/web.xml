@@ -14,6 +14,16 @@
 		<servlet-name>firstServlet</servlet-name>
 		<url-pattern>/oi</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>controller</servlet-name>
+		<servlet-class>com.ciceroinfo.mvc.servlet.ControllerServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>controller</servlet-name>
+		<url-pattern>/mvc</url-pattern>
+	</servlet-mapping>
 
 	<servlet>
 		<servlet-name>adicionaContato</servlet-name>

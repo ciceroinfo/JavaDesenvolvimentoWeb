@@ -32,9 +32,7 @@ public class ContatoDAO implements DAO<Contato> {
 		stmt.setString(3, contato.getEndereco());
 		stmt.setDate(4, new Date(contato.getDataNascimento().getTimeInMillis()));
 
-		stmt.execute();
-
-		return true;
+		return stmt.execute();
 	}
 
 	@Override
@@ -44,9 +42,19 @@ public class ContatoDAO implements DAO<Contato> {
 	}
 
 	@Override
-	public boolean edit(Contato contato) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean edit(Contato contato) throws SQLException {
+		
+		String sql = "update cicerodb.contato set nome=?, email=?, endereco=?, data_nascimento=?) where id = ?";
+
+		PreparedStatement stmt = conn.prepareStatement(sql);
+
+		stmt.setString(1, contato.getNome());
+		stmt.setString(2, contato.getEmail());
+		stmt.setString(3, contato.getEndereco());
+		stmt.setDate(4, new Date(contato.getDataNascimento().getTimeInMillis()));
+		stmt.setLong(5, contato.getId());
+
+		return stmt.execute();
 	}
 
 	@Override

@@ -9,7 +9,7 @@ public interface DAO<E> {
 
 	public boolean remove(E e);
 
-	public boolean edit(E e);
+	public boolean edit(E e) throws SQLException;
 
 	public List<E> getList();
 
