@@ -11,7 +11,7 @@ public interface DAO<E> {
 
 	public boolean edit(E e) throws SQLException;
 
-	public List<E> getList() throws SQLException;
+	public List<E> list() throws SQLException;
 
 	public E getById(long id) throws SQLException;
 

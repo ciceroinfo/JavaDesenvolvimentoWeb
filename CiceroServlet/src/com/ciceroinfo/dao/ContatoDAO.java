@@ -10,10 +10,15 @@ import java.util.Calendar;
 import java.util.List;
 
 import com.ciceroinfo.bo.Contato;
+import com.ciceroinfo.db.ConnectionFactory;
 
 public class ContatoDAO implements DAO<Contato> {
 
 	private Connection conn = null;
+
+	public ContatoDAO() {
+		this.conn = new ConnectionFactory().getConnection();
+	}
 
 	public ContatoDAO(Connection conn) {
 		this.conn = conn;
@@ -29,26 +34,26 @@ public class ContatoDAO implements DAO<Contato> {
 		stmt.setString(1, contato.getNome());
 		stmt.setString(2, contato.getEmail());
 		stmt.setString(3, contato.getEndereco());
-		
+
 		if (contato.getDataNascimento() != null) {
-			stmt.setDate(4, new Date(contato.getDataNascimento().getTimeInMillis()));
+			stmt.setDate(4, new Date(contato.getDataNascimento()
+					.getTimeInMillis()));
 		} else {
 			stmt.setDate(4, null);
 		}
-		
 
 		return stmt.execute();
 	}
 
 	@Override
 	public boolean remove(Contato contato) throws SQLException {
-		
+
 		String sql = "delete from cicerodb.contato where id = ?";
 
 		PreparedStatement stmt = conn.prepareStatement(sql);
 
 		stmt.setLong(1, contato.getId());
-		
+
 		return stmt.execute();
 	}
 
@@ -68,8 +73,12 @@ public class ContatoDAO implements DAO<Contato> {
 		return stmt.execute();
 	}
 
-	@Override
 	public List<Contato> getList() {
+		return list();
+	}
+
+	@Override
+	public List<Contato> list() {
 
 		List<Contato> contatos = new ArrayList<Contato>();
 
@@ -81,6 +90,8 @@ public class ContatoDAO implements DAO<Contato> {
 
 			ResultSet rs = stmt.executeQuery();
 
+			Date txtDataNascimento = null;
+
 			while (rs.next()) {
 
 				Contato contato = new Contato();
@@ -90,10 +101,13 @@ public class ContatoDAO implements DAO<Contato> {
 				contato.setEmail(rs.getString("email"));
 				contato.setEndereco(rs.getString("endereco"));
 
-				Calendar data = Calendar.getInstance();
-				data.setTime(rs.getDate("data_nascimento"));
+				txtDataNascimento = rs.getDate("data_nascimento");
 
-				contato.setDataNascimento(data);
+				if (txtDataNascimento != null) {
+					Calendar data = Calendar.getInstance();
+					data.setTime(txtDataNascimento);
+					contato.setDataNascimento(data);
+				}
 
 				contatos.add(contato);
 
@@ -109,15 +123,15 @@ public class ContatoDAO implements DAO<Contato> {
 
 	@Override
 	public Contato getById(long id) throws SQLException {
-		
+
 		String sql = "select * from cicerodb.contato where id = ?";
 
 		PreparedStatement stmt = conn.prepareStatement(sql);
 
 		stmt.setLong(1, id);
-		
+
 		ResultSet rs = stmt.executeQuery();
-		
+
 		while (rs.next()) {
 
 			Contato contato = new Contato();
@@ -136,7 +150,6 @@ public class ContatoDAO implements DAO<Contato> {
 
 		}
 
-		
 		return null;
 	}
 

@@ -75,12 +75,15 @@ html, body {
 						<tr bgcolor="#${id.count % 2 == 0 ? 'F0F0F0' : 'FFFFFF'}">
 							<td align="center">${contato.id}</td>
 							<td align="left">${contato.nome}</td>
-							<c:if test="${not empty contato.email}">
-								<td align="left"><a href="mailto:${contato.email}">${contato.email}</a></td>
-							</c:if>
+							<td align="left"><c:if test="${not empty contato.email}">
+									<a href="mailto:${contato.email}">${contato.email}</a>
+								</c:if></td>
 							<td align="left">${contato.endereco }</td>
-							<td align="center"><fmt:formatDate
-									value="${contato.dataNascimento.time}" pattern="dd/MM/yyyy" /></td>
+							<td align="center"><c:if
+									test="${contato.dataNascimento ne null}">
+									<fmt:formatDate value="${contato.dataNascimento.time}"
+										pattern="dd/MM/yyyy" />
+								</c:if></td>
 						</tr>
 
 					</c:forEach>
