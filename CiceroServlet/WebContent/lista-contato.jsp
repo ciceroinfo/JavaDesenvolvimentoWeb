@@ -73,7 +73,7 @@ html, body {
 					<c:forEach var="contato" items="${dao.list}" varStatus="id">
 
 						<tr bgcolor="#${id.count % 2 == 0 ? 'F0F0F0' : 'FFFFFF'}">
-							<td>${contato.id}</td>
+							<td align="center">${contato.id}</td>
 							<td align="left">${contato.nome}</td>
 							<c:if test="${not empty contato.email}">
 								<td align="left"><a href="mailto:${contato.email}">${contato.email}</a></td>
