@@ -3,46 +3,22 @@
 	xmlns="http://java.sun.com/xml/ns/javaee"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 	id="WebApp_ID" version="2.5">
-	<display-name>CiceroServlet</display-name>
+	<display-name>CiceroSpring</display-name>
 
-	<filter>
-		<filter-name>connection</filter-name>
-		<filter-class>com.ciceroinfo.mvc.filter.ConnectionFilter</filter-class>
-	</filter>
-	
-	<filter-mapping>
-		<filter-name>connection</filter-name>
-		<url-pattern>/*</url-pattern>
-	</filter-mapping>
 
 	<servlet>
-		<servlet-name>firstServlet</servlet-name>
-		<servlet-class>com.ciceroinfo.servlet.FirstServlet</servlet-class>
+		<servlet-name>springServletX</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>/WEB-INF/spring-context.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
 	</servlet>
 
 	<servlet-mapping>
-		<servlet-name>firstServlet</servlet-name>
-		<url-pattern>/oi</url-pattern>
-	</servlet-mapping>
-
-	<servlet>
-		<servlet-name>controller</servlet-name>
-		<servlet-class>com.ciceroinfo.mvc.servlet.ControllerServlet</servlet-class>
-	</servlet>
-
-	<servlet-mapping>
-		<servlet-name>controller</servlet-name>
-		<url-pattern>/mvc</url-pattern>
-	</servlet-mapping>
-
-	<servlet>
-		<servlet-name>adicionaContato</servlet-name>
-		<servlet-class>com.ciceroinfo.servlet.AdicionaContatoServlet</servlet-class>
-	</servlet>
-
-	<servlet-mapping>
-		<servlet-name>adicionaContato</servlet-name>
-		<url-pattern>/AdicionaContato</url-pattern>
+		<servlet-name>springServletX</servlet-name>
+		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 
 	<error-page>
